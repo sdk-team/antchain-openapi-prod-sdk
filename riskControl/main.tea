@@ -1,0 +1,436 @@
+import AlipayUtil;
+import Util;
+import RPCUtil;
+
+type @endpoint = string
+type @regionId = string
+type @accessKeyId = string
+type @accessKeySecret = string
+type @protocol = string
+type @userAgent = string
+type @readTimeout = number
+type @connectTimeout = number
+type @httpProxy = string
+type @httpsProxy = string
+type @socks5Proxy = string
+type @socks5NetWork = string
+type @noProxy = string
+type @maxIdleConns = number
+type @authToken = string
+type @tenant = string
+type @workspace = string
+
+/**
+ * Model for initing client
+ */
+model Config {
+  accessKeyId?: string(description='accesskey id',default=''),
+  accessKeySecret?: string(description='accesskey secret',default=''),
+  authToken?: string(description='auth token',default=''),
+  protocol?: string(description='http protocol',example='http',default='http'),
+  regionId?: string(description='region id',example='cn-hangzhou',default=''),
+  readTimeout?: number(description='read timeout',example='10',default=''),
+  connectTimeout?: number(description='connect timeout',example='10',default=''),
+  httpProxy?: string(description='http proxy',example='http://localhost',default=''),
+  httpsProxy?: string(description='https proxy',example='https://localhost',default=''),
+  endpoint?: string(description='endpoint',example='cs.aliyuncs.com',default=''),
+  noProxy?: string(description='proxy white list',example='http://localhost',default=''),
+  maxIdleConns?: number(description='max idle conns',example='3',default=''),
+  userAgent?: string(description='user agent',example='Alibabacloud/1',default=''),
+  socks5Proxy?: string(description='socks5 proxy',default=''),
+  socks5NetWork?: string(description='socks5 network',example='TCP',default=''),
+  tenant?: string(description='当需要调用API操作指定租户的资源时， 需要提供目标租户的ID',default='',example='MYBKC1CN'),
+  workspace?: string(description='当需要调用API操作指定工作空间的资源时， 需要提供目标工作空间的ID',example='Prod',default=''),
+}
+
+/**
+ * Init client with Config
+ * @param config config contains the necessary information to create a client
+ */
+init(config: Config) {
+  if (Util.isUnset(config)) {
+    throw {
+      code = 'ParameterMissing',
+      message = '\'config\' can not be unset'
+    };
+  }
+
+  @accessKeyId = config.accessKeyId;
+  @accessKeySecret = config.accessKeySecret;
+  @tenant = config.tenant;
+  @workspace = config.workspace;
+  @endpoint = config.endpoint;
+  @authToken = config.authToken;
+  @protocol = config.protocol;
+  @regionId = config.regionId;
+  @userAgent = config.userAgent;
+  @readTimeout = config.readTimeout;
+  @connectTimeout = config.connectTimeout;
+  @httpProxy = config.httpProxy;
+  @httpsProxy = config.httpsProxy;
+  @noProxy = config.noProxy;
+  @socks5Proxy = config.socks5Proxy;
+  @socks5NetWork = config.socks5NetWork;
+  @maxIdleConns = config.maxIdleConns;
+}
+
+/**
+ * Encapsulate the request and invoke the network
+ * @param action api name
+ * @param protocol http or https
+ * @param method e.g. GET
+ * @param pathname pathname of every api
+ * @param request which contains request params
+ * @param runtime which controls some details of call api, such as retry times
+ * @return the response
+ */
+api doRequest(action: string, protocol: string, method: string, pathname: string, request: object, runtime: Util.RuntimeOptions): object {
+  __request.protocol = Util.defaultString(@protocol, protocol);
+  __request.method = method;
+  __request.pathname = pathname;
+  __request.query = {
+    method = action,
+    version = '1.0',
+    sign_type = 'HmacSHA1',
+    req_time = AlipayUtil.getTimestamp(),
+    req_msg_id = Util.getNonce(),
+  };
+
+  if (!Util.empty(@tenant)) {
+    __request.query.tenant = @tenant;
+  }
+
+  if (!Util.empty(@workspace)) {
+    __request.query.workspace = @workspace;
+  }
+
+  if (!Util.empty(@authToken)) {
+    __request.query.auth_token = @authToken;
+  } else {
+    __request.query.access_key = @accessKeyId;
+  }
+
+  __request.headers = {
+    host = @endpoint,
+    user-agent = getUserAgent()
+  };
+
+  var tmp = Util.anyifyMapValue(RPCUtil.query(request));
+  __request.body = Util.toFormString(tmp);
+  __request.headers.content-type = 'application/x-www-form-urlencoded';
+
+  var signedParam = {
+    ...__request.query,
+    ...RPCUtil.query(request)
+  };
+  __request.query.sign = AlipayUtil.getSignature(signedParam, @accessKeySecret);
+} returns {
+  var obj = Util.readAsJSON(__response.body);
+  var res = Util.assertAsMap(obj);
+  var resp = Util.assertAsMap(res.response);
+
+  if (AlipayUtil.hasError(res)) {
+    throw {
+      message = resp.result_msg,
+      data = resp,
+      code = resp.result_code
+    };
+  }
+  return resp;
+} runtime {
+  timeouted = 'retry',
+  readTimeout = Util.defaultNumber(runtime.readTimeout, @readTimeout),
+  connectTimeout = Util.defaultNumber(runtime.connectTimeout, @connectTimeout),
+  httpProxy = Util.defaultString(runtime.httpProxy, @httpProxy),
+  httpsProxy = Util.defaultString(runtime.httpsProxy, @httpsProxy),
+  noProxy = Util.defaultString(runtime.noProxy, @noProxy),
+  maxIdleConns = Util.defaultNumber(runtime.maxIdleConns, @maxIdleConns),
+  retry = {
+    retryable = runtime.autoretry,
+    maxAttempts = Util.defaultNumber(runtime.maxAttempts, 3)
+  },
+  backoff = {
+    policy = Util.defaultString(runtime.backoffPolicy, 'no'),
+    period = Util.defaultNumber(runtime.backoffPeriod, 1)
+  },
+  ignoreSSL = runtime.ignoreSSL
+}
+
+/**
+ * Get user agent
+ * @return user agent
+ */
+function getUserAgent(): string {
+  var userAgent = Util.getUserAgent(@userAgent);
+  return userAgent;
+}
+
+model RiskSwitchInfo {
+  bizOp?: string(name='biz_op', example='null', description='业务动作，必须，如：POST'),
+  bizTag?: string(name='biz_tag', example='null', description='风险场景标识，必须，如：LOGIN'),
+  errorMsg?: string(name='error_msg', example='null', description='风险确认失败后返回给客户端的消息
+如：{"errorMessage":"存在安全风险","result":null,"success":false}'),
+  group?: string(name='group', example='null', description='场景分组，一般对应应用名，如：achelmetcore'),
+  id?: string(name='id', example='null', description='开关数据逻辑主键'),
+  secRequestUrl?: string(name='sec_request_url', example='null', description='业务请求URL的模式
+如：^/webapi/usercenter/operators/\\w+/froze'),
+  value?: string(name='value', example='null', description='风险场景开关，true：接入风险，false或其他任何值表示未启用'),
+}
+
+model ExtraParamInfo {
+  key?: string(name='key', example='null', description='扩展信息的key'),
+  value?: string(name='value', example='null', description='扩展信息的值'),
+}
+
+model QueryRiskSwitchRequest = {
+  bizOp?: string(description='业务动作，值将根据实际事件场景与金融云安全同学进行沟通确认相关的值', name='biz_op'),
+  bizTag?: string(description='风险场景标识，将根据实际事件场景与金融云安全同学进行沟通确认相关的值', name='biz_tag'),
+  group?: string(description='开关分组，对应应用名称，将根据实际事件场景与金融云安全同学进行沟通确认相关的值，一般情况下，group是自身应用的antx中的app_name', name='group'),
+  secRequestUrl?: string(description='业务请求URL，如：/webapi/usercenter/operators/0000170801/froze', name='sec_request_url'),
+}
+
+model QueryRiskSwitchResponse = {
+  riskSwitchInfo?: [ RiskSwitchInfo ](description='风险事件开关信息', name='risk_switch_info'),
+}
+
+/**
+ * Description: 查询风险事件的开关信息
+ * Summary: 查询风险事件的开关信息
+ */
+async function queryRiskSwitch(request: QueryRiskSwitchRequest): QueryRiskSwitchResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return queryRiskSwitchEx(request, runtime);
+}
+
+/**
+ * Description: 查询风险事件的开关信息
+ * Summary: 查询风险事件的开关信息
+ */
+async function queryRiskSwitchEx(request: QueryRiskSwitchRequest, runtime: Util.RuntimeOptions): QueryRiskSwitchResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.risk.switch.query', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
+model AddBizpunishRequest = {
+  actionCode?: string(description='动作编码', example='LIMIT_ORDER', name='action_code'),
+  actionType?: string(description='操作类型', example='PUNISH', name='action_type'),
+  extParams?: string(description='扩展信息，json格式', example='{sevice:www.test.alipay.com}', name='ext_params'),
+  instanceId?: string(description='实例ID，如果是实例处罚则必须', example='123123', name='instance_id'),
+  objectType?: string(description='处罚对象类型', example='PROD', name='object_type'),
+  prodCode?: string(description=' 产品名，如果是产品的处罚或者实例的处罚，则必须', example='ECS', name='prod_code'),
+  reason?: string(description='处罚原因', example='[UCT]CTU策略稽核', name='reason'),
+  requestId?: string(description='请求ID（对应处罚ID）', example='89c374889912dbb35cbe5817409afbb1', name='request_id'),
+  riskLevel?: string(description='风险等级，针对不同级别的处罚进行优先处理，数字越高，等级越高', example='1', name='risk_level'),
+  srcRequestId?: string(description='关联处罚ID，当是解处罚时，该参数必须', example='61bda5262a38eb6453da363c8175b16f', name='src_request_id'),
+  tenantId?: string(description='操作主对象（租户Id）', example='2088201881714570', name='tenant_id'),
+}
+
+model AddBizpunishResponse = {
+  actionResult?: boolean(description='动作执行结果', example='true, false', name='action_result'),
+  requestId?: string(description='对应的请求Id', example='e1f7908a9dbd39c751e63492f725d229', name='request_id'),
+}
+
+/**
+ * Description: 风控新增业务处罚API，用于新增业务处罚信息
+ * Summary: 风控新增业务处罚API
+ */
+async function addBizpunish(request: AddBizpunishRequest): AddBizpunishResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return addBizpunishEx(request, runtime);
+}
+
+/**
+ * Description: 风控新增业务处罚API，用于新增业务处罚信息
+ * Summary: 风控新增业务处罚API
+ */
+async function addBizpunishEx(request: AddBizpunishRequest, runtime: Util.RuntimeOptions): AddBizpunishResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.bizpunish.add', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
+model AnalyzeContentriskRequest = {
+  appMainScene?: string(description='应用主场景，由infosec根据需求制定   ', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='app_main_scene'),
+  appMainSceneId?: string(description='应用主场景主体ID，由infosec根据需求制定', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='app_main_scene_id'),
+  appName?: string(description='应用名称，用于区分内容的应用来源(默认:achelmetcore)', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='app_name'),
+  appScene?: string(description='应用场景，由infosec根据需求制定，如：WALLETSNS', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='app_scene'),
+  appSceneDataId?: string(description='业务ID，例如发帖的帖子ID', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='app_scene_data_id'),
+  audioUrls?: [ string ](description='进行识别的音频地址列表，如：http://www.baidu.com', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='audio_urls'),
+  linkUrls?: [ string ](description='进行识别的链接地址列表，如：http://www.baidu.com,http://www.qq.com', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='link_urls'),
+  operatorId?: string(description='内容的发表账户id，用于将需要检测的内容（文本、链接、图片、音视频）等', example='000000001', name='operator_id'),
+  pictureUrls?: [ string ](description='进行识别的图片地址列表，如：进行识别的图片地址列表  ', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='picture_urls'),
+  publishDate?: string(description='发布时间，如：2016-09-23 14:36:57', example='', maxLength=0, maximum=0, minLength=0, minimum=0, pattern='\\\\d{4}[-]\\\\d{1,2}[-]\\\\d{1,2}(\\\\s\\\\d{2}:\\\\d{2}(:\\\\d{2})?)?', name='publish_date'),
+  tenant?: string(description='内容的发表租户信息，用于将需要检测的内容（文本、链接、图片、音视频）等和账户进行关联', example='MYBKC1CN', name='tenant'),
+  text?: string(description='文本内容，需要进行分析的文本内容', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='text'),
+  videoUrls?: [ string ](description='进行识别的视频地址列表，如：http://www.baidu.com', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='video_urls'),
+}
+
+model AnalyzeContentriskResponse = {
+  appSceneDataId?: string(description='内容ID，用于查询异步识别结果时作为查询ID', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='app_scene_data_id'),
+  eventId?: string(description='内容安全同步检测返回的事件id，用于异步获取检测结果 ', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='event_id'),
+  needQuery?: string(description='是否需要进行异步查询的标志位 
+need: 需要等待60秒之后进行异步查询 
+no_need: 不需要，已经同步返回结果', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='need_query'),
+  reason?: string(description='命中结果详情，执行对应action的具体原因', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='reason'),
+  resultAction?: string(description='PASSED：通过
+REJECTED：拒绝
+CC：发表数据后，自己可见，其它人不可见
+DELETE：删除已发表数据
+REPLACE：替换部分词为 ***
+WARNING：内容存在可疑，提示用户操作RECOVER：恢复误判内容', example='', maxLength=0, maximum=0, minLength=0, minimum=0, name='result_action'),
+}
+
+/**
+ * Description: 内容风险分析API，用于分析当前内容是否存在风险
+ * Summary: 内容风险分析API
+ */
+async function analyzeContentrisk(request: AnalyzeContentriskRequest): AnalyzeContentriskResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return analyzeContentriskEx(request, runtime);
+}
+
+/**
+ * Description: 内容风险分析API，用于分析当前内容是否存在风险
+ * Summary: 内容风险分析API
+ */
+async function analyzeContentriskEx(request: AnalyzeContentriskRequest, runtime: Util.RuntimeOptions): AnalyzeContentriskResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.contentrisk.analyze', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
+model NotifyRiskRequest = {
+  bizOp?: string(description='业务动作，对应风险查询中的biz_op，如：POST', name='biz_op'),
+  bizResult?: boolean(description='业务执行结果，如：true', name='biz_result'),
+  bizTag?: string(description='风险场景标识，对应上面风险查询中的biz_tag，如：LOGIN', name='biz_tag'),
+  extParams?: [ ExtraParamInfo ](description='风险场景扩展参数，该部分内容根据场景需要进行扩展，场景对接时进行确认', name='ext_params'),
+  operatorId?: string(description='操作员ID，如：0000170801', name='operator_id'),
+  securityId?: string(description='风险处理ID，antcloudpaas201807010004383024', name='security_id'),
+  tenant?: string(description='租户，MYBKC1CN', name='tenant'),
+}
+
+model NotifyRiskResponse = {
+}
+
+/**
+ * Description: 业务处理完成后，将结果通知给风险
+ * Summary: 业务结果通知
+ */
+async function notifyRisk(request: NotifyRiskRequest): NotifyRiskResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return notifyRiskEx(request, runtime);
+}
+
+/**
+ * Description: 业务处理完成后，将结果通知给风险
+ * Summary: 业务结果通知
+ */
+async function notifyRiskEx(request: NotifyRiskRequest, runtime: Util.RuntimeOptions): NotifyRiskResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.risk.notify', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
+model QueryRiskRequest = {
+  bizOp?: string(description='业务动作，必须
+biz_tag、biz_op的值将根据实际事件场景与金融云安全同学进行沟通确认相关的值', name='biz_op'),
+  bizTag?: string(description='风险场景标识，必须
+biz_tag、biz_op的值将根据实际事件场景与金融云安全同学进行沟通确认相关的值
+', name='biz_tag'),
+  callbackUrl?: string(description='风险处理成功后的回调地址，如：https://www.cloud.alipay.com，需要做urlencode', name='callback_url'),
+  clientIp?: string(description='打开浏览器来访问业务的客户端IP地址信息，必须，如：10.158.231.107', name='client_ip'),
+  extParams?: [ ExtraParamInfo ](description='风险场景扩展参数，该部分内容根据场景需要进行扩展，场景对接时进行确认', name='ext_params'),
+  loginName?: string(description='登录名称，如：test@alipay.net', name='login_name'),
+  operatorId?: string(description='操作员ID，必须，如：0000170801', name='operator_id'),
+  serverName?: string(description='服务应用名称，记录请求来源于哪一个应用，可以是自己应用的antx中的app_name，如：achelmetcore', name='server_name'),
+  tenant?: string(description='当前操作的租户，如：MYBKC1CN', name='tenant'),
+  tokenId?: string(description='采集终端指纹信息的token信息。如果没有umid，该信息必须，如b3d885f3-4d05-4c5b-a1fd-c19f390497db', name='token_id'),
+  umid?: string(description='对应umidserver中的umid，如果没有tokenId，该信息必须，如：CV10z5aa08c364370da41034e5655ff9a', name='umid'),
+}
+
+model QueryRiskResponse = {
+  securityId?: string(description='风险处理ID，如：antcloudpaas201807010004383024', name='security_id'),
+  secResult?: string(description='风险处理结果，SEC_NONE：无安全风险
+SEC_CHECK：需要进行安全检查
+SEC_FAIL：存在严重安全风险，不允许进行后续业务
+', name='sec_result'),
+  templateCode?: string(description='风险运营返回的code，只有在失败时才会返回', name='template_code'),
+  templateDesc?: string(description='风险运营返回的描述信息，只有在失败时才会返回', name='template_desc'),
+  verifyId?: string(description='风险核身对应的ID，native使用', name='verify_id'),
+  verifyUrl?: string(description='风险核身的URL地址，如：https://securitycore.alipay.com/validate.htm?securityId=antcloudpaas201807010004383024', name='verify_url'),
+}
+
+/**
+ * Description: 风险事件查询API，用于查询当前业务是否存在风险
+ * Summary: 风险事件查询API
+ */
+async function queryRisk(request: QueryRiskRequest): QueryRiskResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return queryRiskEx(request, runtime);
+}
+
+/**
+ * Description: 风险事件查询API，用于查询当前业务是否存在风险
+ * Summary: 风险事件查询API
+ */
+async function queryRiskEx(request: QueryRiskRequest, runtime: Util.RuntimeOptions): QueryRiskResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.risk.query', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
+model QueryContentriskResultRequest = {
+  appScene?: string(description='应用主场景，由infosec根据需求制定', name='app_scene'),
+  appSceneDataId?: string(description='内容风险识别中的内容业务ID，用于进行异步识别结果的索引查询 ', name='app_scene_data_id'),
+  eventId?: string(description='内容检测事件id，根据此id查询异步检测结果', name='event_id'),
+}
+
+model QueryContentriskResultResponse = {
+  reason?: string(description='命中结果详情，执行对应action的具体原因 ', name='reason'),
+  resultAction?: string(description='PASSED：通过 REJECTED：拒绝 CC：发表数据后，自己可见，其它人不可见 DELETE：删除已发表数据 REPLACE：替换部分词为 *** WARNING：内容存在可疑，提示用户操作RECOVER：恢复误判内容', name='result_action'),
+}
+
+/**
+ * Description: 内容风险分析结果查询API，用于风险分析结果的异步查询
+ * Summary: 内容风险分析结果查询API
+ */
+async function queryContentriskResult(request: QueryContentriskResultRequest): QueryContentriskResultResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return queryContentriskResultEx(request, runtime);
+}
+
+/**
+ * Description: 内容风险分析结果查询API，用于风险分析结果的异步查询
+ * Summary: 内容风险分析结果查询API
+ */
+async function queryContentriskResultEx(request: QueryContentriskResultRequest, runtime: Util.RuntimeOptions): QueryContentriskResultResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.contentrisk.result.query', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
+model ConfirmRiskRequest = {
+  bizOp?: string(description='业务动作，对应上面风险查询中的biz_op，如：POST', name='biz_op'),
+  bizTag?: string(description='风险场景标识，对应上面风险查询中的biz_tag，如：LOGIN', name='biz_tag'),
+  extParams?: [ ExtraParamInfo ](description='风险场景扩展参数，该部分内容根据场景需要进行扩展，场景对接时进行确认', name='ext_params'),
+  operatorId?: string(description='操作员ID，如：0000170801', name='operator_id'),
+  securityId?: string(description='风险处理ID，必须，如：antcloudpaas201807010004383024', name='security_id'),
+}
+
+model ConfirmRiskResponse = {
+  confirmSuccess?: boolean(description='风险确认结果，true：通过，false：不通过。业务处理时根据该结果来看是否应该进行后续的业务，为false不进行后续业务', name='confirm_success'),
+}
+
+/**
+ * Description: 风险结果确认（后端进行doublecheck），用于业务执行前，业务方发起风险确认，判定对应的操作是否确实安全
+ * Summary: 风险结果确认
+ */
+async function confirmRisk(request: ConfirmRiskRequest): ConfirmRiskResponse {
+  var runtime = new Util.RuntimeOptions{};
+  return confirmRiskEx(request, runtime);
+}
+
+/**
+ * Description: 风险结果确认（后端进行doublecheck），用于业务执行前，业务方发起风险确认，判定对应的操作是否确实安全
+ * Summary: 风险结果确认
+ */
+async function confirmRiskEx(request: ConfirmRiskRequest, runtime: Util.RuntimeOptions): ConfirmRiskResponse {
+  Util.validateModel(request);
+  return doRequest('antcloud.riskcontrol.risk.confirm', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
+}
+
