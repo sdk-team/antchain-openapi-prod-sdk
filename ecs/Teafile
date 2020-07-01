@@ -1,0 +1,70 @@
+{
+  "scope": "alipaycloud",
+  "name": "ecs",
+  "version": "1.0.0",
+  "main": "./main.tea",
+  "maintainers": [
+    {
+      "name": "Ant Chain SDK",
+      "email": "sdk-team@alibabacloud.com"
+    }
+  ],
+  "releases": {
+    "java": "com.antchain:ecs:0.0.1",
+    "go": "github.com/alipay/antchain-openapi-sdk-go/Ecs/client:v1.0.0",
+    "csharp": "AntChain.SDK.Ecs:0.0.1",
+    "ts": "@antchain/ecs:^1.0.0",
+    "php": "antchain/ecs:^0.1.0",
+    "python": "antchain_sdk_ecs:0.0.1"
+  },
+  "libraries": {
+    "Util": "alibabacloud:Util:*",
+    "RPCUtil": "alibabacloud:RPCUtil:*",
+    "AlipayUtil": "alipaycloud:AlipayUtil:*"
+  },
+  "java": {
+    "package": "com.antchain.ecs",
+    "packageInfo": {
+      "description": "Ant Chain ecs SDK for Java",
+      "url": "https://github.com/alipay/antchain-openapi-prod-sdk",
+      "licenseNmae": "The Apache License, Version 2.0",
+      "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+      "developerId": "alipayproducts",
+      "developerName": "Ant Chain SDK",
+      "developerEmail": "alipaysdk@alipay.com"
+    }
+  },
+  "csharp": {
+    "className": "Client",
+    "namespace": "AntChain.SDK.Ecs",
+    "packageInfo": {
+      "name": "ecs",
+      "title": "antchain-ecs",
+      "description": "Ant Chain ecs SDK Library for .NET",
+      "company": "Ant Chain, Inc"
+    }
+  },
+  "php": {
+    "package": "AntChain.Ecs",
+    "clientName": "Client",
+    "packageInfo": {
+      "name": "antchain/ecs",
+      "desc": "Ant Chain SDK Library for PHP",
+      "github": "https://github.com/alipay/antchain-openapi-sdk-php",
+      "files": {
+        "LICENSE": "../LICENSE"
+      }
+    }
+  },
+  "python": {
+    "package": "antchain_sdk_ecs",
+    "clientName": "client",
+    "packageInfo": {
+      "name": "antchain_ecs",
+      "desc": "Ant Chain Ecs SDK Library for Python",
+      "github": "https://github.com/alipay/antchain-openapi-prod-sdk",
+      "author": "Ant Chain SDK",
+      "email": "sdk-team@alibabacloud.com"
+    }
+  }
+}
