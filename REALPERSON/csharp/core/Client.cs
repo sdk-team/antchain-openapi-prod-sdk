@@ -126,7 +126,7 @@ namespace AntChain.SDK.REALPERSON
                         {"access_key", _accessKeyId},
                         {"charset", "UTF-8"},
                         {"baseSdkVersion", "Tea-SDK"},
-                        {"sdkVersion", "Tea-SDK-20200803"},
+                        {"sdkVersion", "Tea-SDK-20200804"},
                     };
                     if (!AlibabaCloud.TeaUtil.Common.Empty(_securityToken))
                     {
@@ -242,7 +242,7 @@ namespace AntChain.SDK.REALPERSON
                         {"access_key", _accessKeyId},
                         {"charset", "UTF-8"},
                         {"baseSdkVersion", "Tea-SDK"},
-                        {"sdkVersion", "Tea-SDK-20200803"},
+                        {"sdkVersion", "Tea-SDK-20200804"},
                     };
                     if (!AlibabaCloud.TeaUtil.Common.Empty(_securityToken))
                     {
