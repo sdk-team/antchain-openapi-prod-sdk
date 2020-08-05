@@ -1,3 +1,6 @@
+2020-08-05 Version: 1.1.1
+- Generated SDK for REALPERSON.
+
 2020-08-04 Version: 1.1.1
 - Generated SDK for REALPERSON.
 
