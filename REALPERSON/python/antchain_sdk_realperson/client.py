@@ -121,7 +121,7 @@ class Client:
                     "access_key": self._access_key_id,
                     "charset": "UTF-8",
                     "baseSdkVersion": "Tea-SDK",
-                    "sdkVersion": "Tea-SDK-20200805"
+                    "sdkVersion": "Tea-SDK-20200806"
                 }
                 if not UtilClient.empty(self._security_token):
                     _request.query["security_token"] = self._security_token
