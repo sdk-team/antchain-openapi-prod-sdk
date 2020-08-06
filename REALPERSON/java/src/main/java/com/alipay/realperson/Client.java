@@ -94,7 +94,7 @@ public class Client {
                     new TeaPair("access_key", _accessKeyId),
                     new TeaPair("charset", "UTF-8"),
                     new TeaPair("baseSdkVersion", "Tea-SDK"),
-                    new TeaPair("sdkVersion", "Tea-SDK-20200805")
+                    new TeaPair("sdkVersion", "Tea-SDK-20200806")
                 );
                 if (!com.aliyun.teautil.Common.empty(_securityToken)) {
                     request_.query.put("security_token", _securityToken);
