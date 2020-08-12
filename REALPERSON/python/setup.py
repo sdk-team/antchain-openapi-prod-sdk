@@ -23,7 +23,7 @@ import os
 """
 setup module for antchain_realperson.
 
-Created on 06/08/2020
+Created on 12/08/2020
 
 @author: Ant Chain SDK
 """
