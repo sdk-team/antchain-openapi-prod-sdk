@@ -1,0 +1,70 @@
+{
+  "scope": "alibabacloud",
+  "name": "Ding",
+  "version": "1.0.0",
+  "main": "./main.tea",
+  "maintainers": [
+    {
+      "name": "Alibaba Cloud SDK",
+      "email": "sdk-team@alibabacloud.com"
+    }
+  ],
+  "java": {
+    "package": "com.aliyun.sdk_data_1598238000612",
+    "packageInfo": {
+      "description": "Alibaba Cloud SDK_DATA_1598238000612 SDK for Java",
+      "url": "https://github.com/aliyun/alibabacloud-sdk",
+      "licenseNmae": "The Apache License, Version 2.0",
+      "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+      "developerId": "aliyunproducts",
+      "developerName": "Aliyun SDK",
+      "developerEmail": "aliyunsdk@aliyun.com"
+    }
+  },
+  "releases": {
+    "java": "com.aliyun:sdk_data_1598238000612:0.0.1",
+    "go": "github.com/alibabacloud-go/sdk_data_1598238000612/client:v1.1.1",
+    "csharp": "AlibabaCloud.SDK.SDK_DATA_1598238000612:0.0.1",
+    "ts": "@alicloud/sdk_data_1598238000612:^1.0.0",
+    "php": "alibabacloud/sdk_data_1598238000612:^0.1.0",
+    "python": "alibabacloud_sdk_data_1598238000612:0.0.1"
+  },
+  "libraries": {
+    "DingUtil": "alibabacloud:DingUtil:*",
+    "Util": "darabonba:Util:*",
+    "Url": "darabonba:Url:*"
+  },
+  "csharp": {
+    "className": "Client",
+    "namespace": "AlibabaCloud.SDK.SDK_DATA_1598238000612",
+    "packageInfo": {
+      "name": "sdk_data_1598238000612",
+      "title": "alibabacloud-sdk_data_1598238000612",
+      "description": "Alibaba Cloud SDK_DATA_1598238000612 SDK Library for .NET",
+      "company": "Alibaba Cloud, Inc"
+    }
+  },
+  "php": {
+    "package": "AlibabaCloud.SDK.SDK_DATA_1598238000612",
+    "clientName": "{{upperFirstPureProductId}}",
+    "packageInfo": {
+      "name": "alibabacloud/sdk_data_1598238000612",
+      "desc": "Alibaba Cloud SDK_DATA_1598238000612 SDK Library for PHP",
+      "github": "https://github.com/aliyun/alibabacloud-sdk",
+      "files": {
+        "LICENSE": "../LICENSE"
+      }
+    }
+  },
+  "python": {
+    "package": "alibabacloud_sdk_data_1598238000612",
+    "clientName": "client",
+    "packageInfo": {
+      "name": "alibabacloud_sdk_data_1598238000612",
+      "desc": "Alibaba Cloud SDK_DATA_1598238000612 SDK Library for Python",
+      "github": "https://github.com/aliyun/alibabacloud-sdk",
+      "author": "Alibaba Cloud SDK",
+      "email": "sdk-team@alibabacloud.com"
+    }
+  }
+}
