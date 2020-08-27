@@ -167,7 +167,7 @@ class Client(object):
         user_agent = "TeaClient/1.0.0"
         return UtilClient.get_user_agent(user_agent)
 
-    def get_emo_dog_age(self, request):
+    def get_demo_dog_age(self, request):
         """
         Description: 该接口用于获取狗狗的年龄
         Summary: 获取狗狗的年龄
@@ -175,13 +175,13 @@ class Client(object):
         runtime = util_models.RuntimeOptions(
 
         )
-        return self.get_emo_dog_age_ex(request, runtime)
+        return self.get_demo_dog_age_ex(request, runtime)
 
-    def get_emo_dog_age_ex(self, request, runtime):
+    def get_demo_dog_age_ex(self, request, runtime):
         """
         Description: 该接口用于获取狗狗的年龄
         Summary: 获取狗狗的年龄
         """
         UtilClient.validate_model(request)
-        return dog_models.GetEmoDogAgeResponse().from_map(self.do_request("1.0", "demo.dog.age.get", "HTTPS", "POST", "/gateway.do", request.to_map(), runtime))
+        return dog_models.GetDemoDogAgeResponse().from_map(self.do_request("1.0", "demo.dog.age.get", "HTTPS", "POST", "/gateway.do", request.to_map(), runtime))
 

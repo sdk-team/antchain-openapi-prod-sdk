@@ -78,7 +78,7 @@ class Config(TeaModel):
         return self
 
 
-class GetEmoDogAgeRequest(TeaModel):
+class GetDemoDogAgeRequest(TeaModel):
     def __init__(self, auth_token=None, id=None):
         self.auth_token = auth_token
         self.id = id
@@ -98,7 +98,7 @@ class GetEmoDogAgeRequest(TeaModel):
         return self
 
 
-class GetEmoDogAgeResponse(TeaModel):
+class GetDemoDogAgeResponse(TeaModel):
     def __init__(self, req_msg_id=None, result_code=None, result_msg=None, age=None):
         self.req_msg_id = req_msg_id
         self.result_code = result_code
