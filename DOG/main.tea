@@ -151,13 +151,13 @@ function getUserAgent(): string {
   return Util.getUserAgent(userAgent);
 }
 
-model GetEmoDogAgeRequest = {
+model GetDemoDogAgeRequest = {
   authToken?: string(name='auth_token'),
   // 狗狗的id
   id?: string(name='id'),
 }
 
-model GetEmoDogAgeResponse = {
+model GetDemoDogAgeResponse = {
   reqMsgId?: string(name='req_msg_id'),
   resultCode?: string(name='result_code'),
   resultMsg?: string(name='result_msg'),
@@ -169,16 +169,16 @@ model GetEmoDogAgeResponse = {
  * Description: 该接口用于获取狗狗的年龄
  * Summary: 获取狗狗的年龄
  */
-async function getEmoDogAge(request: GetEmoDogAgeRequest): GetEmoDogAgeResponse {
+async function getDemoDogAge(request: GetDemoDogAgeRequest): GetDemoDogAgeResponse {
   var runtime = new Util.RuntimeOptions{};
-  return getEmoDogAgeEx(request, runtime);
+  return getDemoDogAgeEx(request, runtime);
 }
 
 /**
  * Description: 该接口用于获取狗狗的年龄
  * Summary: 获取狗狗的年龄
  */
-async function getEmoDogAgeEx(request: GetEmoDogAgeRequest, runtime: Util.RuntimeOptions): GetEmoDogAgeResponse {
+async function getDemoDogAgeEx(request: GetDemoDogAgeRequest, runtime: Util.RuntimeOptions): GetDemoDogAgeResponse {
   Util.validateModel(request);
   return doRequest('1.0' ,'demo.dog.age.get', 'HTTPS', 'POST', `/gateway.do`, request, runtime);
 }
