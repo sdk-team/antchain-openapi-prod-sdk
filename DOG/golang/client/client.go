@@ -120,31 +120,31 @@ func (s *Config) SetSocks5NetWork(v string) *Config {
 	return s
 }
 
-type GetEmoDogAgeRequest struct {
+type GetDemoDogAgeRequest struct {
 	AuthToken *string `json:"auth_token,omitempty" xml:"auth_token,omitempty"`
 	// 狗狗的id
 	Id *string `json:"id,omitempty" xml:"id,omitempty"`
 }
 
-func (s GetEmoDogAgeRequest) String() string {
+func (s GetDemoDogAgeRequest) String() string {
 	return tea.Prettify(s)
 }
 
-func (s GetEmoDogAgeRequest) GoString() string {
+func (s GetDemoDogAgeRequest) GoString() string {
 	return s.String()
 }
 
-func (s *GetEmoDogAgeRequest) SetAuthToken(v string) *GetEmoDogAgeRequest {
+func (s *GetDemoDogAgeRequest) SetAuthToken(v string) *GetDemoDogAgeRequest {
 	s.AuthToken = &v
 	return s
 }
 
-func (s *GetEmoDogAgeRequest) SetId(v string) *GetEmoDogAgeRequest {
+func (s *GetDemoDogAgeRequest) SetId(v string) *GetDemoDogAgeRequest {
 	s.Id = &v
 	return s
 }
 
-type GetEmoDogAgeResponse struct {
+type GetDemoDogAgeResponse struct {
 	ReqMsgId   *string `json:"req_msg_id,omitempty" xml:"req_msg_id,omitempty"`
 	ResultCode *string `json:"result_code,omitempty" xml:"result_code,omitempty"`
 	ResultMsg  *string `json:"result_msg,omitempty" xml:"result_msg,omitempty"`
@@ -152,30 +152,30 @@ type GetEmoDogAgeResponse struct {
 	Age *int64 `json:"age,omitempty" xml:"age,omitempty"`
 }
 
-func (s GetEmoDogAgeResponse) String() string {
+func (s GetDemoDogAgeResponse) String() string {
 	return tea.Prettify(s)
 }
 
-func (s GetEmoDogAgeResponse) GoString() string {
+func (s GetDemoDogAgeResponse) GoString() string {
 	return s.String()
 }
 
-func (s *GetEmoDogAgeResponse) SetReqMsgId(v string) *GetEmoDogAgeResponse {
+func (s *GetDemoDogAgeResponse) SetReqMsgId(v string) *GetDemoDogAgeResponse {
 	s.ReqMsgId = &v
 	return s
 }
 
-func (s *GetEmoDogAgeResponse) SetResultCode(v string) *GetEmoDogAgeResponse {
+func (s *GetDemoDogAgeResponse) SetResultCode(v string) *GetDemoDogAgeResponse {
 	s.ResultCode = &v
 	return s
 }
 
-func (s *GetEmoDogAgeResponse) SetResultMsg(v string) *GetEmoDogAgeResponse {
+func (s *GetDemoDogAgeResponse) SetResultMsg(v string) *GetDemoDogAgeResponse {
 	s.ResultMsg = &v
 	return s
 }
 
-func (s *GetEmoDogAgeResponse) SetAge(v int64) *GetEmoDogAgeResponse {
+func (s *GetDemoDogAgeResponse) SetAge(v int64) *GetDemoDogAgeResponse {
 	s.Age = &v
 	return s
 }
@@ -353,10 +353,10 @@ func (client *Client) GetUserAgent() (_result *string) {
  * Description: 该接口用于获取狗狗的年龄
  * Summary: 获取狗狗的年龄
  */
-func (client *Client) GetEmoDogAge(request *GetEmoDogAgeRequest) (_result *GetEmoDogAgeResponse, _err error) {
+func (client *Client) GetDemoDogAge(request *GetDemoDogAgeRequest) (_result *GetDemoDogAgeResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
-	_result = &GetEmoDogAgeResponse{}
-	_body, _err := client.GetEmoDogAgeEx(request, runtime)
+	_result = &GetDemoDogAgeResponse{}
+	_body, _err := client.GetDemoDogAgeEx(request, runtime)
 	if _err != nil {
 		return _result, _err
 	}
@@ -368,12 +368,12 @@ func (client *Client) GetEmoDogAge(request *GetEmoDogAgeRequest) (_result *GetEm
  * Description: 该接口用于获取狗狗的年龄
  * Summary: 获取狗狗的年龄
  */
-func (client *Client) GetEmoDogAgeEx(request *GetEmoDogAgeRequest, runtime *util.RuntimeOptions) (_result *GetEmoDogAgeResponse, _err error) {
+func (client *Client) GetDemoDogAgeEx(request *GetDemoDogAgeRequest, runtime *util.RuntimeOptions) (_result *GetDemoDogAgeResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
 		return _result, _err
 	}
-	_result = &GetEmoDogAgeResponse{}
+	_result = &GetDemoDogAgeResponse{}
 	_body, _err := client.DoRequest(tea.String("1.0"), tea.String("demo.dog.age.get"), tea.String("HTTPS"), tea.String("POST"), tea.String("/gateway.do"), tea.ToMap(request), runtime)
 	if _err != nil {
 		return _result, _err
