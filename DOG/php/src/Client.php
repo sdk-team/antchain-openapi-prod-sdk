@@ -14,8 +14,8 @@ use AlibabaCloud\Tea\Exception\TeaUnableRetryError;
 
 use AntChain\DOG\Models\Config;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
-use AntChain\DOG\Models\GetEmoDogAgeRequest;
-use AntChain\DOG\Models\GetEmoDogAgeResponse;
+use AntChain\DOG\Models\GetDemoDogAgeRequest;
+use AntChain\DOG\Models\GetDemoDogAgeResponse;
 
 class Client {
     protected $_endpoint;
@@ -189,23 +189,23 @@ class Client {
     /**
      * Description: 该接口用于获取狗狗的年龄
      * Summary: 获取狗狗的年龄
-     * @param GetEmoDogAgeRequest $request
-     * @return GetEmoDogAgeResponse
+     * @param GetDemoDogAgeRequest $request
+     * @return GetDemoDogAgeResponse
      */
-    public function getEmoDogAge($request){
+    public function getDemoDogAge($request){
         $runtime = new RuntimeOptions([]);
-        return $this->getEmoDogAgeEx($request, $runtime);
+        return $this->getDemoDogAgeEx($request, $runtime);
     }
 
     /**
      * Description: 该接口用于获取狗狗的年龄
      * Summary: 获取狗狗的年龄
-     * @param GetEmoDogAgeRequest $request
+     * @param GetDemoDogAgeRequest $request
      * @param RuntimeOptions $runtime
-     * @return GetEmoDogAgeResponse
+     * @return GetDemoDogAgeResponse
      */
-    public function getEmoDogAgeEx($request, $runtime){
+    public function getDemoDogAgeEx($request, $runtime){
         Utils::validateModel($request);
-        return GetEmoDogAgeResponse::fromMap($this->doRequest("1.0", "demo.dog.age.get", "HTTPS", "POST", "/gateway.do", $request, $runtime));
+        return GetDemoDogAgeResponse::fromMap($this->doRequest("1.0", "demo.dog.age.get", "HTTPS", "POST", "/gateway.do", $request, $runtime));
     }
 }

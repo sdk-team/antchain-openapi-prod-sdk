@@ -5,7 +5,7 @@ namespace AntChain\DOG\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class GetEmoDogAgeResponse extends Model {
+class GetDemoDogAgeResponse extends Model {
     protected $_name = [
         'reqMsgId' => 'req_msg_id',
         'resultCode' => 'result_code',
@@ -31,7 +31,7 @@ class GetEmoDogAgeResponse extends Model {
     }
     /**
      * @param array $map
-     * @return GetEmoDogAgeResponse
+     * @return GetDemoDogAgeResponse
      */
     public static function fromMap($map = []) {
         $model = new self();
