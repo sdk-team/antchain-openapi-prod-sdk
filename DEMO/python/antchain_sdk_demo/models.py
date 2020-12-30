@@ -1,53 +1,64 @@
 # -*- coding: utf-8 -*-
 # This file is auto-generated, don't edit it. Thanks.
 from Tea.model import TeaModel
-try:
-    from typing import List
-except ImportError:
-    pass
+from typing import List
 
 
 class Config(TeaModel):
     """
     Model for initing client
     """
-    def __init__(self, access_key_id=None, access_key_secret=None, security_token=None, protocol=None,
-                 read_timeout=None, connect_timeout=None, http_proxy=None, https_proxy=None, endpoint=None, no_proxy=None,
-                 max_idle_conns=None, user_agent=None, socks_5proxy=None, socks_5net_work=None):
+    def __init__(
+        self,
+        access_key_id: str = None,
+        access_key_secret: str = None,
+        security_token: str = None,
+        protocol: str = None,
+        read_timeout: int = None,
+        connect_timeout: int = None,
+        http_proxy: str = None,
+        https_proxy: str = None,
+        endpoint: str = None,
+        no_proxy: str = None,
+        max_idle_conns: int = None,
+        user_agent: str = None,
+        socks_5proxy: str = None,
+        socks_5net_work: str = None,
+    ):
         # accesskey id
-        self.access_key_id = access_key_id  # type: str
+        self.access_key_id = access_key_id
         # accesskey secret
-        self.access_key_secret = access_key_secret  # type: str
+        self.access_key_secret = access_key_secret
         # security token
-        self.security_token = security_token  # type: str
+        self.security_token = security_token
         # http protocol
-        self.protocol = protocol        # type: str
+        self.protocol = protocol
         # read timeout
-        self.read_timeout = read_timeout  # type: int
+        self.read_timeout = read_timeout
         # connect timeout
-        self.connect_timeout = connect_timeout  # type: int
+        self.connect_timeout = connect_timeout
         # http proxy
-        self.http_proxy = http_proxy    # type: str
+        self.http_proxy = http_proxy
         # https proxy
-        self.https_proxy = https_proxy  # type: str
+        self.https_proxy = https_proxy
         # endpoint
-        self.endpoint = endpoint        # type: str
+        self.endpoint = endpoint
         # proxy white list
-        self.no_proxy = no_proxy        # type: str
+        self.no_proxy = no_proxy
         # max idle conns
-        self.max_idle_conns = max_idle_conns  # type: int
+        self.max_idle_conns = max_idle_conns
         # user agent
-        self.user_agent = user_agent    # type: str
+        self.user_agent = user_agent
         # socks5 proxy
-        self.socks_5proxy = socks_5proxy  # type: str
+        self.socks_5proxy = socks_5proxy
         # socks5 network
-        self.socks_5net_work = socks_5net_work  # type: str
+        self.socks_5net_work = socks_5net_work
 
     def validate(self):
         pass
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.access_key_id is not None:
             result['accessKeyId'] = self.access_key_id
         if self.access_key_secret is not None:
@@ -78,57 +89,65 @@ class Config(TeaModel):
             result['socks5NetWork'] = self.socks_5net_work
         return result
 
-    def from_map(self, map={}):
-        if map.get('accessKeyId') is not None:
-            self.access_key_id = map.get('accessKeyId')
-        if map.get('accessKeySecret') is not None:
-            self.access_key_secret = map.get('accessKeySecret')
-        if map.get('securityToken') is not None:
-            self.security_token = map.get('securityToken')
-        if map.get('protocol') is not None:
-            self.protocol = map.get('protocol')
-        if map.get('readTimeout') is not None:
-            self.read_timeout = map.get('readTimeout')
-        if map.get('connectTimeout') is not None:
-            self.connect_timeout = map.get('connectTimeout')
-        if map.get('httpProxy') is not None:
-            self.http_proxy = map.get('httpProxy')
-        if map.get('httpsProxy') is not None:
-            self.https_proxy = map.get('httpsProxy')
-        if map.get('endpoint') is not None:
-            self.endpoint = map.get('endpoint')
-        if map.get('noProxy') is not None:
-            self.no_proxy = map.get('noProxy')
-        if map.get('maxIdleConns') is not None:
-            self.max_idle_conns = map.get('maxIdleConns')
-        if map.get('userAgent') is not None:
-            self.user_agent = map.get('userAgent')
-        if map.get('socks5Proxy') is not None:
-            self.socks_5proxy = map.get('socks5Proxy')
-        if map.get('socks5NetWork') is not None:
-            self.socks_5net_work = map.get('socks5NetWork')
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('accessKeyId') is not None:
+            self.access_key_id = m.get('accessKeyId')
+        if m.get('accessKeySecret') is not None:
+            self.access_key_secret = m.get('accessKeySecret')
+        if m.get('securityToken') is not None:
+            self.security_token = m.get('securityToken')
+        if m.get('protocol') is not None:
+            self.protocol = m.get('protocol')
+        if m.get('readTimeout') is not None:
+            self.read_timeout = m.get('readTimeout')
+        if m.get('connectTimeout') is not None:
+            self.connect_timeout = m.get('connectTimeout')
+        if m.get('httpProxy') is not None:
+            self.http_proxy = m.get('httpProxy')
+        if m.get('httpsProxy') is not None:
+            self.https_proxy = m.get('httpsProxy')
+        if m.get('endpoint') is not None:
+            self.endpoint = m.get('endpoint')
+        if m.get('noProxy') is not None:
+            self.no_proxy = m.get('noProxy')
+        if m.get('maxIdleConns') is not None:
+            self.max_idle_conns = m.get('maxIdleConns')
+        if m.get('userAgent') is not None:
+            self.user_agent = m.get('userAgent')
+        if m.get('socks5Proxy') is not None:
+            self.socks_5proxy = m.get('socks5Proxy')
+        if m.get('socks5NetWork') is not None:
+            self.socks_5net_work = m.get('socks5NetWork')
         return self
 
 
 class DemoClass(TeaModel):
-    def __init__(self, some_string=None, some_date=None, some_boolean=None, some_int=None, some_list=None):
+    def __init__(
+        self,
+        some_string: str = None,
+        some_date: str = None,
+        some_boolean: bool = None,
+        some_int: int = None,
+        some_list: List[str] = None,
+    ):
         # 字符串测试
-        self.some_string = some_string  # type: str
+        self.some_string = some_string
         # 日期测试
-        self.some_date = some_date      # type: str
+        self.some_date = some_date
         # Boolean测试
-        self.some_boolean = some_boolean  # type: bool
+        self.some_boolean = some_boolean
         # 整数测试
-        self.some_int = some_int        # type: int
+        self.some_int = some_int
         # 列表测试
-        self.some_list = some_list      # type: List[str]
+        self.some_list = some_list
 
     def validate(self):
         if self.some_date is not None:
             self.validate_pattern(self.some_date, 'some_date', '\\d{4}[-]\\d{1,2}[-]\\d{1,2}[T]\\d{2}:\\d{2}:\\d{2}[Z]')
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.some_string is not None:
             result['someString'] = self.some_string
         if self.some_date is not None:
@@ -141,28 +160,34 @@ class DemoClass(TeaModel):
             result['someList'] = self.some_list
         return result
 
-    def from_map(self, map={}):
-        if map.get('someString') is not None:
-            self.some_string = map.get('someString')
-        if map.get('someDate') is not None:
-            self.some_date = map.get('someDate')
-        if map.get('someBoolean') is not None:
-            self.some_boolean = map.get('someBoolean')
-        if map.get('someInt') is not None:
-            self.some_int = map.get('someInt')
-        if map.get('someList') is not None:
-            self.some_list = map.get('someList')
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('someString') is not None:
+            self.some_string = m.get('someString')
+        if m.get('someDate') is not None:
+            self.some_date = m.get('someDate')
+        if m.get('someBoolean') is not None:
+            self.some_boolean = m.get('someBoolean')
+        if m.get('someInt') is not None:
+            self.some_int = m.get('someInt')
+        if m.get('someList') is not None:
+            self.some_list = m.get('someList')
         return self
 
 
 class AnotherClass(TeaModel):
-    def __init__(self, bar=None, ref=None, ref_list=None):
+    def __init__(
+        self,
+        bar: str = None,
+        ref: DemoClass = None,
+        ref_list: List[DemoClass] = None,
+    ):
         # 测试字段
-        self.bar = bar                  # type: str
+        self.bar = bar
         # 引用字段
-        self.ref = ref                  # type: DemoClass
+        self.ref = ref
         # 列表引用Struct
-        self.ref_list = ref_list        # type: List[DemoClass]
+        self.ref_list = ref_list
 
     def validate(self):
         if self.ref:
@@ -173,7 +198,7 @@ class AnotherClass(TeaModel):
                     k.validate()
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.bar is not None:
             result['bar'] = self.bar
         if self.ref is not None:
@@ -184,29 +209,37 @@ class AnotherClass(TeaModel):
                 result['refList'].append(k.to_map() if k else None)
         return result
 
-    def from_map(self, map={}):
-        if map.get('bar') is not None:
-            self.bar = map.get('bar')
-        if map.get('ref') is not None:
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('bar') is not None:
+            self.bar = m.get('bar')
+        if m.get('ref') is not None:
             temp_model = DemoClass()
-            self.ref = temp_model.from_map(map['ref'])
+            self.ref = temp_model.from_map(m['ref'])
         self.ref_list = []
-        if map.get('refList') is not None:
-            for k in map.get('refList'):
+        if m.get('refList') is not None:
+            for k in m.get('refList'):
                 temp_model = DemoClass()
                 self.ref_list.append(temp_model.from_map(k))
         return self
 
 
 class StatusDemoGatewayCheckRequest(TeaModel):
-    def __init__(self, auth_token=None, product_instance_id=None, region_name=None, aaaa=None, same=None):
-        self.auth_token = auth_token    # type: str
-        self.product_instance_id = product_instance_id  # type: str
-        self.region_name = region_name  # type: str
+    def __init__(
+        self,
+        auth_token: str = None,
+        product_instance_id: str = None,
+        region_name: str = None,
+        aaaa: int = None,
+        same: List[DemoClass] = None,
+    ):
+        self.auth_token = auth_token
+        self.product_instance_id = product_instance_id
+        self.region_name = region_name
         # ffff
-        self.aaaa = aaaa                # type: int
+        self.aaaa = aaaa
         # ddddd
-        self.same = same                # type: List[DemoClass]
+        self.same = same
 
     def validate(self):
         if self.same:
@@ -215,7 +248,7 @@ class StatusDemoGatewayCheckRequest(TeaModel):
                     k.validate()
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.auth_token is not None:
             result['auth_token'] = self.auth_token
         if self.product_instance_id is not None:
@@ -230,34 +263,40 @@ class StatusDemoGatewayCheckRequest(TeaModel):
                 result['same'].append(k.to_map() if k else None)
         return result
 
-    def from_map(self, map={}):
-        if map.get('auth_token') is not None:
-            self.auth_token = map.get('auth_token')
-        if map.get('product_instance_id') is not None:
-            self.product_instance_id = map.get('product_instance_id')
-        if map.get('region_name') is not None:
-            self.region_name = map.get('region_name')
-        if map.get('aaaa') is not None:
-            self.aaaa = map.get('aaaa')
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('auth_token') is not None:
+            self.auth_token = m.get('auth_token')
+        if m.get('product_instance_id') is not None:
+            self.product_instance_id = m.get('product_instance_id')
+        if m.get('region_name') is not None:
+            self.region_name = m.get('region_name')
+        if m.get('aaaa') is not None:
+            self.aaaa = m.get('aaaa')
         self.same = []
-        if map.get('same') is not None:
-            for k in map.get('same'):
+        if m.get('same') is not None:
+            for k in m.get('same'):
                 temp_model = DemoClass()
                 self.same.append(temp_model.from_map(k))
         return self
 
 
 class StatusDemoGatewayCheckResponse(TeaModel):
-    def __init__(self, req_msg_id=None, result_code=None, result_msg=None):
-        self.req_msg_id = req_msg_id    # type: str
-        self.result_code = result_code  # type: str
-        self.result_msg = result_msg    # type: str
+    def __init__(
+        self,
+        req_msg_id: str = None,
+        result_code: str = None,
+        result_msg: str = None,
+    ):
+        self.req_msg_id = req_msg_id
+        self.result_code = result_code
+        self.result_msg = result_msg
 
     def validate(self):
         pass
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.req_msg_id is not None:
             result['req_msg_id'] = self.req_msg_id
         if self.result_code is not None:
@@ -266,27 +305,33 @@ class StatusDemoGatewayCheckResponse(TeaModel):
             result['result_msg'] = self.result_msg
         return result
 
-    def from_map(self, map={}):
-        if map.get('req_msg_id') is not None:
-            self.req_msg_id = map.get('req_msg_id')
-        if map.get('result_code') is not None:
-            self.result_code = map.get('result_code')
-        if map.get('result_msg') is not None:
-            self.result_msg = map.get('result_msg')
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('req_msg_id') is not None:
+            self.req_msg_id = m.get('req_msg_id')
+        if m.get('result_code') is not None:
+            self.result_code = m.get('result_code')
+        if m.get('result_msg') is not None:
+            self.result_msg = m.get('result_msg')
         return self
 
 
 class EchoDemoGatewayCheckRequest(TeaModel):
-    def __init__(self, auth_token=None, product_instance_id=None, region_name=None):
-        self.auth_token = auth_token    # type: str
-        self.product_instance_id = product_instance_id  # type: str
-        self.region_name = region_name  # type: str
+    def __init__(
+        self,
+        auth_token: str = None,
+        product_instance_id: str = None,
+        region_name: str = None,
+    ):
+        self.auth_token = auth_token
+        self.product_instance_id = product_instance_id
+        self.region_name = region_name
 
     def validate(self):
         pass
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.auth_token is not None:
             result['auth_token'] = self.auth_token
         if self.product_instance_id is not None:
@@ -295,29 +340,36 @@ class EchoDemoGatewayCheckRequest(TeaModel):
             result['region_name'] = self.region_name
         return result
 
-    def from_map(self, map={}):
-        if map.get('auth_token') is not None:
-            self.auth_token = map.get('auth_token')
-        if map.get('product_instance_id') is not None:
-            self.product_instance_id = map.get('product_instance_id')
-        if map.get('region_name') is not None:
-            self.region_name = map.get('region_name')
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('auth_token') is not None:
+            self.auth_token = m.get('auth_token')
+        if m.get('product_instance_id') is not None:
+            self.product_instance_id = m.get('product_instance_id')
+        if m.get('region_name') is not None:
+            self.region_name = m.get('region_name')
         return self
 
 
 class EchoDemoGatewayCheckResponse(TeaModel):
-    def __init__(self, req_msg_id=None, result_code=None, result_msg=None, ddd=None):
-        self.req_msg_id = req_msg_id    # type: str
-        self.result_code = result_code  # type: str
-        self.result_msg = result_msg    # type: str
+    def __init__(
+        self,
+        req_msg_id: str = None,
+        result_code: str = None,
+        result_msg: str = None,
+        ddd: int = None,
+    ):
+        self.req_msg_id = req_msg_id
+        self.result_code = result_code
+        self.result_msg = result_msg
         # aaa
-        self.ddd = ddd                  # type: int
+        self.ddd = ddd
 
     def validate(self):
         pass
 
     def to_map(self):
-        result = {}
+        result = dict()
         if self.req_msg_id is not None:
             result['req_msg_id'] = self.req_msg_id
         if self.result_code is not None:
@@ -328,13 +380,16 @@ class EchoDemoGatewayCheckResponse(TeaModel):
             result['ddd'] = self.ddd
         return result
 
-    def from_map(self, map={}):
-        if map.get('req_msg_id') is not None:
-            self.req_msg_id = map.get('req_msg_id')
-        if map.get('result_code') is not None:
-            self.result_code = map.get('result_code')
-        if map.get('result_msg') is not None:
-            self.result_msg = map.get('result_msg')
-        if map.get('ddd') is not None:
-            self.ddd = map.get('ddd')
+    def from_map(self, m: dict = None):
+        m = m or dict()
+        if m.get('req_msg_id') is not None:
+            self.req_msg_id = m.get('req_msg_id')
+        if m.get('result_code') is not None:
+            self.result_code = m.get('result_code')
+        if m.get('result_msg') is not None:
+            self.result_msg = m.get('result_msg')
+        if m.get('ddd') is not None:
+            self.ddd = m.get('ddd')
         return self
+
+
