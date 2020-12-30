@@ -24,7 +24,7 @@ namespace AntChain.SDK.DEMO.Models
         // ffff
         [NameInMap("aaaa")]
         [Validation(Required=false)]
-        public long Aaaa { get; set; }
+        public long? Aaaa { get; set; }
 
         // ddddd
         [NameInMap("same")]
