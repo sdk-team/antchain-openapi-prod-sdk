@@ -10,12 +10,12 @@
     }
   ],
   "releases": {
-    "java": "com.alipay:demo:2.4.1",
-    "go": "github.com/antchain-openapi-sdk-go/demo/client:v2.4.1",
-    "csharp": "AntChain.SDK.DEMO:2.4.1",
-    "ts": "@antchain/demo:2.4.1",
-    "php": "antchain/demo:2.4.1",
-    "python": "antchain_sdk_demo:2.4.1"
+    "java": "com.alipay:demo:2.4.0",
+    "go": "github.com/antchain-openapi-sdk-go/demo/client:v2.4.0",
+    "csharp": "AntChain.SDK.DEMO:2.4.0",
+    "ts": "@antchain/demo:2.4.0",
+    "php": "antchain/demo:2.4.0",
+    "python": "antchain_sdk_demo:2.4.0"
   },
   "libraries": {
     "Util": "darabonba:Util:*",
