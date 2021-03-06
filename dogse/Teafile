@@ -10,11 +10,11 @@
     }
   ],
   "releases": {
-    "java": "com.antgroup.antchain.openapi:openapi-dog:1.5.23-SNAPSHOT",
+    "java": "com.antgroup.antchain.openapi:openapi-dog:0.0.1",
     "go": "github.com/antchain-openapi-sdk-go/dog/client:v0.0.1",
     "csharp": "AntChain.SDK.DOG:0.0.1",
     "ts": "@antchain/dog:^1.0.0",
-    "php": "antchain/dog:^0.1.0",
+    "php": "antchain/dog:1.1.23",
     "python": "antchain_sdk_dog:0.0.1"
   },
   "libraries": {
