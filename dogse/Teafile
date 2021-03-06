@@ -11,7 +11,7 @@
   ],
   "releases": {
     "java": "com.antgroup.antchain.openapi:openapi-dog:0.0.1",
-    "go": "github.com/antchain-openapi-sdk-go/dog/client:v0.0.1",
+    "go": "github.com/antchain-openapi-sdk-go/dogse/client:v1.1.23",
     "csharp": "AntChain.SDK.DOG:0.0.1",
     "ts": "@antchain/dog:^1.0.0",
     "php": "antchain/dog:1.1.23",
