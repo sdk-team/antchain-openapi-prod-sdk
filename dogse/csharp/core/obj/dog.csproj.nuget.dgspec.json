@@ -1,0 +1,115 @@
+{
+  "format": 1,
+  "restore": {
+    "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj": {}
+  },
+  "projects": {
+    "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj": {
+      "version": "1.1.23",
+      "restore": {
+        "projectUniqueName": "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj",
+        "projectName": "AntChain.SDK.DOG-test",
+        "projectPath": "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "/root/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net45",
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "projectReferences": {}
+          },
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net45": {
+          "dependencies": {
+            "AlibabaCloud.SDK.Common": {
+              "target": "Package",
+              "version": "[0.2.5, )"
+            },
+            "AlibabaCloud.TeaUtil": {
+              "target": "Package",
+              "version": "[0.1.11, )"
+            },
+            "AntChain.AlipayUtil": {
+              "target": "Package",
+              "version": "[0.1.3, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0-preview.2, )"
+            },
+            "Tea": {
+              "target": "Package",
+              "version": "[1.0.9, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+        },
+        "netstandard2.0": {
+          "dependencies": {
+            "AlibabaCloud.SDK.Common": {
+              "target": "Package",
+              "version": "[0.2.5, )"
+            },
+            "AlibabaCloud.TeaUtil": {
+              "target": "Package",
+              "version": "[0.1.11, )"
+            },
+            "AntChain.AlipayUtil": {
+              "target": "Package",
+              "version": "[0.1.3, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0-preview.2, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Tea": {
+              "target": "Package",
+              "version": "[1.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

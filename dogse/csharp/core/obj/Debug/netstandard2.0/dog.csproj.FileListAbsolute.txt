@@ -1,0 +1,7 @@
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/netstandard2.0/AntChain.SDK.DOG-test.deps.json
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/netstandard2.0/AntChain.SDK.DOG-test.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/netstandard2.0/AntChain.SDK.DOG-test.pdb
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/netstandard2.0/dog.csprojAssemblyReference.cache
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/netstandard2.0/dog.csproj.CoreCompileInputs.cache
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/netstandard2.0/AntChain.SDK.DOG-test.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/netstandard2.0/AntChain.SDK.DOG-test.pdb

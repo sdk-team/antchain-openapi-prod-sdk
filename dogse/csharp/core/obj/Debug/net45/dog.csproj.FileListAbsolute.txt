@@ -1,0 +1,16 @@
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/AntChain.SDK.DOG-test.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/AntChain.SDK.DOG-test.pdb
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/AlibabaCloud.OSSUtil.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/AlibabaCloud.SDK.Common.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/AlibabaCloud.TeaUtil.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/AntChain.AlipayUtil.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/BouncyCastle.Crypto.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/System.Net.Http.Extensions.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/System.Net.Http.Primitives.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/Newtonsoft.Json.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/bin/Debug/net45/Tea.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/net45/dog.csprojAssemblyReference.cache
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/net45/dog.csproj.CoreCompileInputs.cache
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/net45/dog.csproj.CopyComplete
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/net45/AntChain.SDK.DOG-test.dll
+/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/Debug/net45/AntChain.SDK.DOG-test.pdb
