@@ -1,0 +1,60 @@
+/**
+ * This is a utility module
+ */
+
+/**
+ * Get timestamp
+ * @return the string
+ * @example 2006-01-02T15:04:05Z
+ * @error no error throws
+ */
+static function getTimestamp(): string;
+
+/**
+ * Judge if the api called success or not
+ * @param res the response string
+ * @param secret the accesskey secret string
+ * @return the boolean
+ * @example true
+ * @error no error throws
+ */
+static function hasError(res: string, secret: string): boolean;
+
+/**
+ * Calculate signature according to signedParams and secret
+ * @param signedParams the signed string
+ * @param secret the accesskey secret
+ * @return the signature string
+ * @example qlB4B1lFcehlWRelL7Fo4uNHPCs=
+ * @error no error throws
+ */
+static function getSignature(signedParams: map[string]string, secret: string): string;
+
+/**
+ * Upload item with urlPath
+ * @param item the file
+ * @param urlPath the upload url
+ */
+static async function putObject(item: readable, headers: map[string]string, urlPath: string) throws: void;
+
+/**
+ * Parse  headers into map[string]string 
+ * @param headers the target headers
+ * @return the map[string]string
+ */
+static function parseUploadHeaders(headers: any): map[string]string;
+
+/**
+ * Generate a nonce string
+ * @return the nonce string
+ */
+static function getNonce(): string;
+
+/**
+* Judge upload if ok or not
+*
+* @return the boolean
+* @example resultCode == successCode or resultCode == ok is true
+* @error no error throws
+*/
+static function isSuccess(resultCode: string, successCode: string): boolean;

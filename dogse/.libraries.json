@@ -1,0 +1,5 @@
+{
+  "darabonba:Util:*": "libraries/darabonba_Util_0.1.18",
+  "alibabacloud:RPCUtil:*": "libraries/alibabacloud_RPCUtil_0.1.5",
+  "antchain:AntchainUtil:*": "libraries/antchain_AntchainUtil_0.1.10"
+}
