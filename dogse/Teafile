@@ -1,6 +1,7 @@
 {
   "scope": "antchain",
   "name": "DOG",
+  "version": "1.0.0",
   "main": "./main.tea",
   "maintainers": [
     {
