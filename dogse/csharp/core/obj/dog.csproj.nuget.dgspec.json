@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj": {}
+    "/root/output/69066c28-4395-4860-a9ad-f65d8e7f562c/antchain/dogse/csharp/core/dog.csproj": {}
   },
   "projects": {
-    "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj": {
+    "/root/output/69066c28-4395-4860-a9ad-f65d8e7f562c/antchain/dogse/csharp/core/dog.csproj": {
       "version": "1.1.23",
       "restore": {
-        "projectUniqueName": "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj",
+        "projectUniqueName": "/root/output/69066c28-4395-4860-a9ad-f65d8e7f562c/antchain/dogse/csharp/core/dog.csproj",
         "projectName": "AntChain.SDK.DOG-test",
-        "projectPath": "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/dog.csproj",
+        "projectPath": "/root/output/69066c28-4395-4860-a9ad-f65d8e7f562c/antchain/dogse/csharp/core/dog.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/root/output/baad27de-24de-4ed8-8737-9410151d8cd7/antchain/dogse/csharp/core/obj/",
+        "outputPath": "/root/output/69066c28-4395-4860-a9ad-f65d8e7f562c/antchain/dogse/csharp/core/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
